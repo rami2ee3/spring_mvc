@@ -5,11 +5,18 @@
 
 	<!-- select -->
 
-	<select id="SELECT_MEMBER" parameterType="JSON" resultType="JSON">
-		SELECT *
+	<select id="getMember" resultType="MemberVO">
+		SELECT id, name
 		FROM member
 		LIMIT 1
 	</select>
+
+	<select id="getTime" resultType="String">
+		SELECT NOW()
+	</select>
+
+	<!-- // select -->
+
 
 
 </mapper>

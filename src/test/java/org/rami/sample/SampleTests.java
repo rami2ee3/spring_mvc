@@ -1,4 +1,4 @@
-package org.zerock.sample;
+package org.rami.sample;
 
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
