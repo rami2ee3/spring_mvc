@@ -1,0 +1,14 @@
+package org.rami.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/ajax-board")
+public class AjaxBoardController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AjaxBoardController.class);
+
+}
