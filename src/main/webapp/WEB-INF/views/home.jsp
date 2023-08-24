@@ -9,8 +9,7 @@
 <h1>
 	Hello world!  
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
 <div>${member}</div>
+<div>${myCompany}</div>
 </body>
 </html>
