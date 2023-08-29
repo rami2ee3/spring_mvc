@@ -37,7 +37,7 @@ public class HomeController {
 	private CompanyService companyService;
 	@Inject
 	private BoardService boardService;
-	
+
 	@GetMapping("/")
 	public String home(HttpServletRequest request, Model model) throws Exception{
 		String id = request.getParameter("id");

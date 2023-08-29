@@ -26,4 +26,7 @@
 </table>
 
 </body>
+<script>
+    const boardList = ${boardList};
+</script>
 </html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.rami.mapper.ajaxBoard2Mapper">
+
+    <!-- select -->
+    <select id="getAjaxBoard2List" resultType="AjaxBoard2VO">
+        SELECT *
+        FROM ajax_board2
+        WHERE is_deleted = FALSE
+    </select>
+
+    <select id="getAjaxBoard2" resultType="AjaxBoard2VO" parameterType="int">
+        SELECT *
+        FROM ajax_board2
+        WHERE is_deleted = FALSE
+          AND id = #{id}
+    </select>
+
+    <select id="getReplyList" resultType="AjaxBoardReply2VO" parameterType="int">
+        SELECT id,
+               ajax_board2_id,
+               content,
+               writer,
+               DATE_FORMAT(created_at, '%Y.%m.%d %h:%i:%s') AS created_at,
+               DATE_FORMAT(updated_at, '%Y.%m.%d %h:%i:%s') AS updated_at,
+               is_deleted
+        FROM ajax_board_reply2
+        WHERE is_deleted = FALSE
+          AND ajax_board2_id = #{ajax_board2_id}
+    </select>
+
+    <select id="getReply" resultType="AjaxBoardReply2VO" parameterType="int">
+        SELECT id,
+               ajax_board2_id,
+               content,
+               writer,
+               DATE_FORMAT(created_at, '%Y.%m.%d %h:%i:%s') AS created_at,
+               DATE_FORMAT(updated_at, '%Y.%m.%d %h:%i:%s') AS updated_at,
+               is_deleted
+        FROM ajax_board_reply2
+        WHERE is_deleted = FALSE
+          AND id = #{reply_id}
+    </select>
+
+    <select id="countReply" parameterType="int" resultType="int">
+        SELECT COUNT(*) AS count
+        FROM ajax_board_reply2
+        WHERE ajax_board2_id = #{ajax_board2_id}
+          AND is_deleted = FALSE
+    </select>
+
+    <!-- // select -->
+
+    <!-- insert -->
+
+    <insert id="insertAjaxBoard2" parameterType="AjaxBoard2VO">
+        INSERT INTO ajax_board2 (title, content, writer)
+        VALUES (#{title}, #{content}, #{writer})
+    </insert>
+
+    <insert id="insertReply" parameterType="AjaxBoardReply2VO">
+        INSERT INTO ajax_board_reply2 (ajax_board2_id, content, writer)
+        VALUES (#{ajax_board2_id}, #{content}, #{writer})
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- // insert -->
+
+    <!-- update -->
+    <update id="deleteAjaxBoard2" parameterType="int">
+        UPDATE ajax_board2
+        SET is_deleted = 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteReply" parameterType="int">
+        UPDATE ajax_board_reply2
+        SET is_deleted = 1
+        WHERE ajax_board2_id = #{ajax_board2_id}
+    </update>
+
+    <update id="updateAjaxBoard2" parameterType="AjaxBoard2VO">
+        UPDATE ajax_board2
+        SET title   = #{title},
+            writer  = #{writer},
+            content = #{content}
+        WHERE id = #{id}
+    </update>
+
+    <!-- // update -->
+
+</mapper>
