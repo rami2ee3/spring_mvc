@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.rami.controller" />
-	
-	
-	
+	<context:component-scan base-package="org.rami.api" />
+
 </beans:beans>

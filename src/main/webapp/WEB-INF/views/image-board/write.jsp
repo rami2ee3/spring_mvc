@@ -11,7 +11,7 @@
 <body>
 <div class="mb-3">
     <label for="input-writer" class="form-label">작성자</label>
-    <input type="text" class="form-control" id="input-writer" placeholder="작성자를 입력해주세요">
+    <input type="text" class="form-control" id="input-writer" readonly value="${memberInfo.userName}">
 </div>
 <div class="mb-3">
     <label for="input-title" class="form-label">글 제목</label>

@@ -11,9 +11,15 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home() throws Exception {
-        return "home";
+    public String loginPage() throws Exception {
+        return "login";
     }
+
+    @GetMapping("/join")
+    public String joinPage() throws Exception{
+        return "join";
+    }
+
 
 
 }

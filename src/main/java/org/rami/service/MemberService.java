@@ -9,5 +9,7 @@ public interface MemberService {
 
     JSONObject loginMemberService(MemberVO vo) throws Exception;
 
+    MemberVO getMemberService(MemberVO vo) throws Exception;
+
 
 }

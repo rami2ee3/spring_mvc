@@ -44,4 +44,9 @@ public class MemberServiceImpl implements MemberService {
             return commonUtil.makeResponse(200, "success", "로그인에 성공하였습니다.");
         }
     }
+
+    @Override
+    public MemberVO getMemberService(MemberVO vo) throws Exception {
+        return memberDAO.getMember(vo);
+    }
 }

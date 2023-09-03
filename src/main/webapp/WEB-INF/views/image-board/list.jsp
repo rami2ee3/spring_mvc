@@ -10,7 +10,35 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <%@include file="../common/header.jsp" %>
+<style>
+    .user__wrap {
+        display: flex;
+    }
+
+    .info__wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logout__wrap {
+        display: flex;
+        margin-left: auto;
+    }
+
+    #logout-btn {
+        margin-bottom: 24px;
+    }
+</style>
 <body>
+<div class="user__wrap">
+    <div class="info__wrap">
+        <h5><b>${memberInfo.userName}</b>님 반갑습니다.</h5>
+        <P>최근 접속일 : <fmt:formatDate value="${memberInfo.lastLoginAt}" pattern="yyyy.MM.dd HH:mm:ss"/></P>
+    </div>
+    <div class="logout__wrap">
+        <button id="logout-btn" type="button" class="btn btn-outline-dark btn-sm">로그아웃</button>
+    </div>
+</div>
 <table class="table table-bordered">
     <thead>
     <tr class="table-primary">
@@ -41,6 +69,31 @@
         $('#reg-btn').on('click', function () {
             location.href = '/image-board/write';
         });
+
+        // 로그아웃 버튼 클릭
+        $('#logout-btn').on('click', function () {
+            // 로그아웃 API 호출
+            const confirmYn = confirm("로그아웃 하시겠습니까?");
+            if (confirmYn) {
+                $.ajax({
+                    url: '/api/member/logout',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.result.code === 200) {
+                            // 로그아웃 성공
+                            location.href = '/';
+                        } else {
+                            alert(res.result.info);
+                        }
+                    }
+                })
+
+            }
+
+        });
+
     });
 </script>
 </html>
