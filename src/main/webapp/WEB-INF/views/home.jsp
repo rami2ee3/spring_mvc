@@ -9,7 +9,5 @@
 <h1>
 	Hello world!  
 </h1>
-<div>${member}</div>
-<div>${myCompany}</div>
 </body>
 </html>
