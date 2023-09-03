@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.rami.mapper.memberMapper">
+
+    <!-- select -->
+
+    <select id="countMember" parameterType="String" resultType="int">
+        SELECT COUNT(*) AS count
+        FROM member
+        WHERE user_id = #{userId}
+          AND is_deleted = 0
+    </select>
+
+    <select id="getMember" parameterType="MemberVO" resultType="MemberVO">
+        SELECT *
+        FROM member
+        WHERE user_id = #{userId}
+          AND user_pw = #{userPw}
+          AND is_deleted = 0
+        LIMIT 1
+    </select>
+
+    <!-- // select -->
+
+    <!-- insert -->
+
+    <insert id="insertMember" parameterType="MemberVO">
+        INSERT INTO member (user_id, user_pw, user_name, user_address)
+        VALUES (#{userId}, #{userPw}, #{userName}, #{userAddress})
+    </insert>
+
+    <!-- // insert -->
+
+    <!-- update -->
+    <update id="updateMemberLastLoginAt" parameterType="String">
+        UPDATE member
+        SET last_login_at = CURRENT_TIMESTAMP
+        WHERE user_id = #{userId}
+    </update>
+    <!-- // update -->
+
+</mapper>
