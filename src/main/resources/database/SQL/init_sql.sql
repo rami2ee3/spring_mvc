@@ -81,3 +81,18 @@ create table notice
 )
     comment '공지사항 테이블';
 
+-- auto-generated definition
+CREATE TABLE member
+(
+    id            int AUTO_INCREMENT
+        PRIMARY KEY,
+    user_id       varchar(32)                          NULL,
+    user_pw       varchar(64)                          NULL,
+    user_name     varchar(32)                          NULL,
+    user_address  varchar(128)                         NULL,
+    last_login_at timestamp  DEFAULT CURRENT_TIMESTAMP NULL,
+    created_at    timestamp  DEFAULT CURRENT_TIMESTAMP NULL,
+    updated_at    timestamp  DEFAULT CURRENT_TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    is_deleted    tinyint(1) DEFAULT 0                 NULL
+);
+
